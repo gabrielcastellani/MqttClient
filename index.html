@@ -13,12 +13,14 @@
         //     headers: myHeaders,
         // };
 
-        fetch('http://localhost:3000')
+        setInterval(() => {
+            fetch('http://localhost:3000')
             .then(data => {
                 data.json().then(info => {
                     console.log(info);
                 })
             });
+        }, 5000);
     </script>
 </head>
 
