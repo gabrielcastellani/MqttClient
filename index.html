@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <script>
+        // var myHeaders = new Headers({
+        //     "Content-Type": "text/plain",
+        //     "X-Custom-Header": "ProcessThisImmediately",
+        //     "Access-Control-Allow-Origin": "*"
+        // });
+
+        // var myInit = {
+        //     method: 'GET',
+        //     headers: myHeaders,
+        // };
+
+        fetch('http://localhost:3000')
+            .then(data => {
+                data.json().then(info => {
+                    console.log(info);
+                })
+            });
+    </script>
+</head>
+
+<body>
+    <h1>Olá</h1>
+    <p id="message">Texto</p>
+</body>
+
+</html>
