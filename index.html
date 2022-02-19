@@ -1,32 +1,78 @@
 <html>
 
 <head>
+    <style>
+        html {
+            background: -webkit-radial-gradient(circle, #fcee92 0%, #ebcf12 100%);
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Thermometer column and text */
+        .thermometer {
+            width: 22px;
+            height: 150px;
+            display: block;
+            font: bold 14px/152px helvetica, arial, sans-serif;
+            text-indent: 36px;
+            background: -webkit-linear-gradient(top, #fff 0%, #fff 50%, #db3f02 50%, #db3f02 100%);
+            border-radius: 22px 22px 0 0;
+            border: 5px solid #4a1c03;
+            border-bottom: none;
+            position: absolute;
+            box-shadow: inset 0 0 0 4px #fff;
+            color: #4a1c03;
+        }
+
+        /* Thermometer Bulb */
+        .thermometer:before {
+            content: ' ';
+            width: 44px;
+            height: 44px;
+            display: block;
+            position: absolute;
+            top: 142px;
+            left: -16px;
+            z-index: -1;
+            /* Place the bulb under the column */
+            background: #db3f02;
+            border-radius: 44px;
+            border: 5px solid #4a1c03;
+            box-shadow: inset 0 0 0 4px #fff;
+        }
+
+        /* This piece here connects the column with the bulb */
+        .thermometer:after {
+            content: ' ';
+            width: 14px;
+            height: 7px;
+            display: block;
+            position: absolute;
+            top: 146px;
+            left: 4px;
+            background: #db3f02;
+        }
+    </style>
     <script>
-        // var myHeaders = new Headers({
-        //     "Content-Type": "text/plain",
-        //     "X-Custom-Header": "ProcessThisImmediately",
-        //     "Access-Control-Allow-Origin": "*"
-        // });
-
-        // var myInit = {
-        //     method: 'GET',
-        //     headers: myHeaders,
-        // };
-
         setInterval(() => {
             fetch('http://localhost:3000')
-            .then(data => {
-                data.json().then(info => {
-                    console.log(info);
-                })
-            });
+                .then(data => {
+                    data.json().then(info => {
+                        document.getElementById("thermometerValue").innerText = info.thermometerValue;
+                    })
+                });
         }, 5000);
     </script>
 </head>
 
 <body>
-    <h1>Olá</h1>
-    <p id="message">Texto</p>
+    <span class="thermometer"><span id="thermometerValue">0</span>&deg;C</span>
 </body>
 
 </html>
